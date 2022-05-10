@@ -9,6 +9,6 @@ A web application which contains below havana related applications.
 #### Libraries:
 
 - flask
-- flask-wtf
+- flask-mysql
 
 ---
