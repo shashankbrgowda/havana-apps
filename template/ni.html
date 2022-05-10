@@ -63,10 +63,11 @@
                 <td>{{ item[7] }}</td>
                 <td>{{ item[8] }}</td>
                 <td>{{ item[9] }}</td>
-                <td><a href="{{ 'http://www.ensembl.org/Homo_sapiens/Location/View?r=' ~ item[1] ~ ':' ~ item[2] ~ '-' ~ item[3] ~ ';db=core' }}">Ens</a></td>
+                <td><a href="{{ 'http://www.ensembl.org/Homo_sapiens/Location/View?r=' ~ item[1] ~ ':' ~ item[2] ~ '-' ~ item[3] ~ ';db=core' }}"
+                       target="_blank" rel="noopener noreferrer">Ens</a></td>
                 <td><a href="{{ 'https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default
                 &lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=' ~ item[1] ~
-                '%3A' ~ item[2] ~ '-' ~ item[3] ~ '&hgsid=589733825' }}">Ucsc</a></td>
+                '%3A' ~ item[2] ~ '-' ~ item[3] ~ '&hgsid=589733825' }}" target="_blank" rel="noopener noreferrer">Ucsc</a></td>
             </tr>
             {% endfor %}
             </tbody>
