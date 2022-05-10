@@ -2,12 +2,23 @@
 {% block content %}
 <div class="card">
     <div class="card-body">
-        <form class="row g-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form class="row g-4" method="POST">
             <div class="col-auto">
-                <input type="text" class="form-control" placeholder="Otter ID/Gene name">
+                <input type="text" class="form-control" placeholder="Otter ID/Gene name" name="otter_id"
+                       value="{{ request.form['otter_id'] }}" required>
             </div>
             <div class="col-auto">
-                <input type="text" class="form-control" placeholder="Limit">
+                <input type="number" class="form-control" placeholder="Limit" name="limit"
+                       value="{{ request.form['limit'] }}">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
@@ -15,4 +26,53 @@
         </form>
     </div>
 </div>
+{% if result %}
+<div class="card" style="margin-top:10px;height:650px;">
+    <div class="card-body" style="overflow-y:scroll;">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>CHR</th>
+                <th>ISTART</th>
+                <th>IEND</th>
+                <th>TOTAL_READS</th>
+                <th>TOTAL_EXPERIMENTS</th>
+                <th>MEDIAN_READ_NUM</th>
+                <th>OTTER_GENE_ID</th>
+                <th>GENE_NAME</th>
+                <th>OTTER_TRANS_ID</th>
+                <th>TRANS_BIOTYPE</th>
+                <th>ILENGTH</th>
+                <th>STRAND</th>
+                <th>ENS_URL</th>
+                <th>UCSC_URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in result %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+                <td>{{ item[6] }}</td>
+                <td>{{ item[7] }}</td>
+                <td>{{ item[8] }}</td>
+                <td>{{ item[9] }}</td>
+                <td>{{ item[10] }}</td>
+                <td>{{ item[11] }}</td>
+                <td>{{ item[12] }}</td>
+                <td><a href="{{ 'http://www.ensembl.org/Homo_sapiens/Location/View?r=' ~ item[1] ~ ':' ~ item[2] ~ '-' ~ item[3] ~ ';db=core' }}"
+                       target="_blank" rel="noopener noreferrer">Ens</a></td>
+                <td><a href="{{ 'https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default
+                &lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=' ~ item[1] ~
+                '%3A' ~ item[2] ~ '-' ~ item[3] ~ '&hgsid=589733825' }}" target="_blank" rel="noopener noreferrer">Ucsc</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
