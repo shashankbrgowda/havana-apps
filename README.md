@@ -1,6 +1,6 @@
 # Havana apps
 
-A web application which contains below havana related applications.
+A web application which contains below havana related utility applications.
 - NI App
 - NSI App
 
@@ -9,6 +9,6 @@ A web application which contains below havana related applications.
 #### Libraries:
 
 - flask
-- flask-wtf
+- flask-mysql
 
 ---
