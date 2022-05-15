@@ -31,4 +31,5 @@ def query(sql: str, cursor: Cursor, conn: Connection) -> tuple[tuple[Any, ...], 
     print(f'SQL={sql}')
     cursor.execute(sql)
     conn.commit()
+
     return cursor.fetchall()

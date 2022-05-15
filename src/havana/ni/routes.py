@@ -64,4 +64,5 @@ def ni_app():
             data = query("select * from counts where tissue like '{}' order by diff desc limit {}".format(tissue, limit)
                          , cursor1, conn1)
         return render_template('ni.html', title='NI', result=data)
+
     return render_template('ni.html', title='NI')

@@ -49,4 +49,5 @@ def nsi_app():
             data = query("""SELECT * FROM no_intropolis WHERE gene_name  LIKE '%{}%' ORDER BY otter_trans_id, chr, 
                         istart LIMIT {}""".format(otter_id, limit), cursor2, conn2)
         return render_template('nsi.html', title='NSI', result=data)
+
     return render_template('nsi.html', title='NSI')

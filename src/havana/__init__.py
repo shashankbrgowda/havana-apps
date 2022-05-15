@@ -32,6 +32,7 @@ def create_app():
     app.config.from_object(Config)
     register_extensions(app)
     register_blueprints(app)
+
     return app
 
 
@@ -45,6 +46,7 @@ def register_extensions(app):
 
     mysql1.init_app(app)
     mysql2.init_app(app)
+
     return None
 
 
@@ -60,9 +62,12 @@ def register_blueprints(app):
     from src.havana.nsi.routes import nsi
     from src.havana.intron.routes import intron
     from src.havana.health.routes import health
+    from src.havana.errors.handlers import errors
 
     app.register_blueprint(ni)
     app.register_blueprint(nsi)
     app.register_blueprint(intron)
     app.register_blueprint(health)
+    app.register_blueprint(errors)
+
     return None

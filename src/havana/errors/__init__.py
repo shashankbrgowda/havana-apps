@@ -12,18 +12,3 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-
-from flask import Blueprint, render_template
-
-intron = Blueprint('intron', __name__)
-
-
-@intron.route('/intron/')
-def intron_app():
-    """
-    TODO: intron app
-
-    :return:
-    """
-
-    return render_template('intron.html', title='Intron')

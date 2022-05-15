@@ -26,6 +26,7 @@ def health_check():
 
     :return: sample response
     """
+
     return {
         'status': 'UP',
         'timestamp': datetime.now()

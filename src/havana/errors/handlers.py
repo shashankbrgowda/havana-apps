@@ -15,15 +15,27 @@
 
 from flask import Blueprint, render_template
 
-intron = Blueprint('intron', __name__)
+errors = Blueprint('errors', __name__)
 
 
-@intron.route('/intron/')
-def intron_app():
+@errors.app_errorhandler(404)
+def error_404(error):
     """
-    TODO: intron app
+    Renders 404 error page for invalid route
 
+    :param error:
     :return:
     """
 
-    return render_template('intron.html', title='Intron')
+    return render_template('errors/404.html'), 404
+
+
+@errors.app_errorhandler(500)
+def error_500(error):
+    """
+    Renders 500 error page for application error
+    :param error:
+    :return:
+    """
+
+    return render_template('errors/500.html'), 500
