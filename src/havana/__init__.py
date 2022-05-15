@@ -22,6 +22,12 @@ from src.havana.extensions import (
 
 
 def create_app():
+    """
+    Creates app and registers all blueprints & extensions
+
+    :return: Flask app object
+    """
+
     app = Flask(__name__, template_folder='./template/')
     app.config.from_object(Config)
     register_extensions(app)
@@ -30,12 +36,26 @@ def create_app():
 
 
 def register_extensions(app):
+    """
+    Registers all the app extensions
+
+    :param app: Flask app object
+    :return: None
+    """
+
     mysql1.init_app(app)
     mysql2.init_app(app)
     return None
 
 
 def register_blueprints(app):
+    """
+    Registers all the app blueprints
+
+    :param app: Flask app object
+    :return: None
+    """
+
     from src.havana.ni.routes import ni
     from src.havana.nsi.routes import nsi
     from src.havana.intron.routes import intron
