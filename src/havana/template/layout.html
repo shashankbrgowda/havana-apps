@@ -31,7 +31,7 @@
 </head>
 <body>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('ni') }}">Havana apps</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('ni.ni_app') }}">Havana apps</a>
 </header>
 
 <div class="container-fluid">
@@ -42,15 +42,15 @@
                     <li class="nav-item"
                         style="{{ 'color:#0a58ca;background-color:white;border:1px solid #0a58ca;border-radius:5px;' if title == 'NI' }}">
                         <a class="nav-link" style="{{ 'color:#0a58ca' if title=='NI' else 'color:black' }}"
-                           href="{{ url_for('ni') }}">NI</a>
+                           href="{{ url_for('ni.ni_app') }}">NI</a>
                     </li>
                     <li class="nav-item"
                         style="{{ 'background-color:white;border:1px solid #0a58ca;border-radius:5px;' if title == 'NSI' }}">
                         <a class="nav-link" style="{{ 'color:#0a58ca' if title=='NSI' else 'color:black' }}"
-                           href="{{ url_for('nsi') }}">NSI</a>
+                           href="{{ url_for('nsi.nsi_app') }}">NSI</a>
                     </li>
                     <!--                    <li class="nav-item">-->
-                    <!--                        <a class="nav-link" href="{{ url_for('intron') }}">Intron</a>-->
+                    <!--                        <a class="nav-link" href="{{ url_for('intron.intron_app') }}">Intron</a>-->
                     <!--                    </li>-->
                 </ul>
             </div>
