@@ -5,10 +5,3 @@ A web application which contains below havana related utility applications.
 - NSI App
 
 ---
-
-#### Libraries:
-
-- flask
-- flask-mysql
-
----
