@@ -13,13 +13,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from typing import Any
 
-from pymysql.connections import Connection
-from pymysql.cursors import Cursor
-
-
-def query(sql: str, cursor: Cursor, conn: Connection) -> tuple[tuple[Any, ...], ...]:
+def query(sql, cursor, conn):
     """
     Fetch all rows for a given SQL query.
 
