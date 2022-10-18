@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form class="row g-4" method="POST">
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="Tissue" name="tissue"
+                       value="{{ request.form['tissue'] }}" required>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="Coords" name="coords"
+                       value="{{ request.form['coords'] }}">
+            </div>
+            <div class="col-auto">
+                <input type="number" class="form-control" placeholder="Limit" name="limit"
+                       value="{{ request.form['limit'] }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% if result %}
+<div class="card" style="margin-top:10px;height:500px;">
+    <div class="card-body" style="overflow-y:scroll;">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>CHR</th>
+                <th>CSTART</th>
+                <th>CEND</th>
+                <th>STRAND</th>
+                <th>DIFF</th>
+                <th>AVG</th>
+                <th>MIN</th>
+                <th>MAX</th>
+                <th>TISSUE</th>
+                <th>INTRON LENGTH</th>
+                <th>ENS URL</th>
+                <th>UCSC URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in result %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+                <td>{{ item[6] }}</td>
+                <td>{{ item[7] }}</td>
+                <td>{{ item[8] }}</td>
+                <td>{{ item[9] }}</td>
+                <td>{{ item[3]-item[2] }}</td>
+                <td><a href="{{ 'http://www.ensembl.org/Homo_sapiens/Location/View?r=' ~ item[1] ~ ':' ~ item[2] ~ '-' ~ item[3] ~ ';db=core' }}"
+                       target="_blank" rel="noopener noreferrer">Ens</a></td>
+                <td><a href="{{ 'https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default
+                &lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=' ~ item[1] ~
+                '%3A' ~ item[2] ~ '-' ~ item[3] ~ '&hgsid=589733825' }}" target="_blank" rel="noopener noreferrer">Ucsc</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}
